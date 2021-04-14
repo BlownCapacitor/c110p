@@ -1,18 +1,14 @@
 import csv
 import pandas as pd
 import statistics
-import plotly.figure_factory as ff
-import plotly.graph_objects as go
 import random
 
 file = pd.read_csv('medium_data.csv')
 
 data = file['reading_time'].tolist()
 mean = statistics.mean(data)
-standardDeviation = statistics.stdev(data)
 
-print("population mean", mean)
-print("population std", standardDeviation)
+
 
 def randomSample(counter):
     dataset = []
@@ -21,6 +17,17 @@ def randomSample(counter):
         value = data[randindex]
         dataset.append(value)
     MS = statistics.mean(dataset)
-    print(MS)
-    SDS = statistics.stdev(dataset)
+    print('sample mean:', MS)
+    
     return(mean)
+
+def setup():
+    meanlist = []
+    for i in range(0,100):
+        setofmean = randomSample(30)
+        meanlist.append(setofmean)
+    randomSample(30)
+   
+setup()
+
+print('population mean', mean)
